@@ -50,6 +50,15 @@ SRCS = 	srcs/ft_memset.c 			\
 		srcs/ft_lstclear_bonus.c 	\
 		srcs/ft_lstiter_bonus.c 	\
 		srcs/ft_lstmap_bonus.c 		\
+		srcs/ft_print_decimal.c 		\
+		srcs/ft_print_decimal.c 		\
+		srcs/ft_print_hexadecimal.c 		\
+		srcs/ft_print_pointer.c 		\
+		srcs/ft_print_putnbr.c 		\
+		srcs/ft_print_size_t.c 		\
+		srcs/ft_print_unsigned_integer.c 		\
+		srcs/ft_printf.c
+
 
 # FLAGS #
 OBJS = ${SRCS:srcs/%.c=obj/%.o}

@@ -2,20 +2,6 @@
 
 Libft es una biblioteca que implementa un conjunto de funciones de la biblioteca estándar de C (libc) y algunas funciones adicionales que manipulan cadenas de caracteres y listas. Este proyecto tiene como objetivo reproducir las funciones más comunes de libc y crear nuevas funciones útiles que no están presentes en ella.
 
-## Requisitos
-
-Este proyecto debe ser implementado en C y no puede hacer uso de funciones externas de la biblioteca estándar, excepto las necesarias para la asignación y liberación de memoria (`malloc` y `free`). Se busca replicar el comportamiento de las funciones de la libc, siguiendo estrictamente sus especificaciones.
-
-### Requisitos de compilación:
-
-- Utilizar la bandera `-std=c99`.
-- Usar `malloc` y `free` para la asignación y liberación de memoria.
-- No utilizar funciones como `strtok`, `memcpy`, `strchr` o cualquier otra función de la libc que ya esté implementada en el proyecto.
-
-## Funciones de la Parte 1 - Funciones de la libc
-
-Las funciones que debes implementar son las siguientes, utilizando el prefijo `ft_` para cada función:
-
 1. **Funciones de la biblioteca estándar de C (libc)**:
     - `ft_isalpha`: Comprueba si un carácter es alfabético.
     - `ft_isdigit`: Comprueba si un carácter es un dígito numérico.
@@ -39,15 +25,8 @@ Las funciones que debes implementar son las siguientes, utilizando el prefijo `f
     - `ft_strnstr`: Busca una subcadena en una cadena, limitando el número de caracteres.
     - `ft_atoi`: Convierte una cadena de caracteres a un número entero.
 
-2. **Funciones que utilizan `malloc`**:
-    - `ft_calloc`: Asigna memoria para una cantidad de elementos de un tamaño determinado, inicializando la memoria a cero.
-    - `ft_strdup`: Duplica una cadena de caracteres.
 
-## Funciones de la Parte 2 - Funciones adicionales
-
-En la segunda parte, debes implementar funciones adicionales que no están presentes en la libc, o que tienen una forma diferente en la biblioteca estándar. Estas funciones son útiles para manipular cadenas de caracteres y listas:
-
-1. **Funciones de manipulación de cadenas**:
+2. **Funciones de manipulación de cadenas**:
     - `ft_substr`: Crea una subcadena a partir de una cadena dada.
     - `ft_strjoin`: Concatena dos cadenas de caracteres.
     - `ft_strtrim`: Elimina los caracteres especificados desde el principio y el final de una cadena.
@@ -60,7 +39,7 @@ En la segunda parte, debes implementar funciones adicionales que no están prese
     - `ft_putendl_fd`: Imprime una cadena de caracteres seguida de una nueva línea en un descriptor de archivo.
     - `ft_putnbr_fd`: Imprime un número entero en un descriptor de archivo.
 
-2. **Funciones de manipulación de listas** (bonus):
+3. **Funciones de manipulación de listas** :
     - `ft_lstnew`: Crea un nuevo nodo para una lista.
     - `ft_lstadd_front`: Añade un nodo al principio de la lista.
     - `ft_lstsize`: Devuelve el tamaño de la lista.

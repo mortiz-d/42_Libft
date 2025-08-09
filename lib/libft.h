@@ -16,6 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <stdarg.h>
+
 typedef struct s_list
 {
 	int				content;
@@ -67,5 +69,18 @@ void		ft_lstdelone(t_list *lst);
 void		ft_lstclear(t_list **lst);
 void		ft_lstiter(t_list *lst, void (*f)(int));
 t_list		*ft_lstmap(t_list *lst, t_list *lst_start, int(*f)(t_list*, int));
+
+//PRINTF
+void	ft_putnbr(int nb);
+int		ft_printf(const char *c, ...);
+int		ft_write_char(int c);
+int		ft_write_string(const char *c);
+int		ft_write_pointer(const void *c);
+int		ft_write_decimal(int number);
+int		ft_write_integer(int number);
+int		ft_write_unsigned_integer(unsigned int number);
+int		ft_write_hexadecimal_min(int num);
+int		ft_write_hexadecimal_max(int num);
+int	    ft_write_size_t(size_t number);
 
 #endif
