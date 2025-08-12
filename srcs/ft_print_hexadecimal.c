@@ -12,47 +12,124 @@
 
 #include "../lib/libft.h"
 
-int	ft_write_hexadecimal_max(int num)
+
+int	get_long_hexa(unsigned long int num)
+{
+	unsigned int	aux,auxnum;
+	int cont;
+
+	cont = 1;
+	auxnum = (unsigned int)num;
+	aux = auxnum / 16;
+
+	if (aux != 0)
+	{
+		cont += get_long_hexa(aux);
+	}
+
+	return (cont);
+}
+
+
+int	ft_write_hexadecimal_XX(unsigned long int num, char * str,int start_loop,int limit_show, char c)
+{
+	unsigned int	temp,aux;
+	unsigned long int auxnum;
+	int cont, long_hex;
+
+	cont = 1;
+	auxnum = num;
+	temp = auxnum % 16;
+	aux = auxnum / 16;
+
+	if(start_loop)
+	{
+		long_hex = get_long_hexa(num);
+		while(long_hex++ < limit_show)
+		{
+			ft_write_char (c);
+			cont++;
+		}
+		
+	}
+
+	if (aux != 0)
+	{
+		cont += ft_write_hexadecimal_XX(aux, str,0,limit_show,c);
+	}
+	if (cont <= limit_show)
+		ft_write_char (str[temp]);
+
+	return (cont);
+}
+
+
+int	ft_write_hexadecimal(unsigned long int  num, char * str)
 {
 	unsigned int	temp;
 	unsigned int	aux;
 	unsigned int	cont;
-	unsigned int	auxnum;
+	unsigned long int	auxnum;
 
 	cont = 1;
-	auxnum = (unsigned int)num;
+	auxnum = (unsigned long int)num;
 	temp = auxnum % 16;
 	aux = auxnum / 16;
 	if (aux != 0)
 	{
-		cont += ft_write_hexadecimal_max(aux);
+		cont += ft_write_hexadecimal(aux, str);
 	}
-	if (temp < 10)
-		ft_write_char ((char)(temp + 48));
-	else
-		ft_write_char ((char)(temp + 55));
+	ft_write_char (str[temp]);
+	// if (temp < 10)
+	// 	ft_write_char ((char)(temp + 48));
+	// else
+	// 	ft_write_char ((char)(temp + 55));
 	return (cont);
 }
 
-int	ft_write_hexadecimal_min(int num)
-{
-	unsigned int	temp;
-	unsigned int	aux;
-	unsigned int	cont;
-	unsigned int	auxnum;
 
-	cont = 1;
-	auxnum = (unsigned int)num;
-	temp = auxnum % 16;
-	aux = auxnum / 16;
-	if (aux != 0)
-	{
-		cont += ft_write_hexadecimal_min(aux);
-	}
-	if (temp < 10)
-		ft_write_char ((char)(temp + 48));
-	else
-		ft_write_char ((char)(temp + 87));
-	return (cont);
-}
+
+// int	ft_write_hexadecimal_max(int num)
+// {
+// 	unsigned int	temp;
+// 	unsigned int	aux;
+// 	unsigned int	cont;
+// 	unsigned int	auxnum;
+
+// 	cont = 1;
+// 	auxnum = (unsigned int)num;
+// 	temp = auxnum % 16;
+// 	aux = auxnum / 16;
+// 	if (aux != 0)
+// 	{
+// 		cont += ft_write_hexadecimal_max(aux);
+// 	}
+// 	if (temp < 10)
+// 		ft_write_char ((char)(temp + 48));
+// 	else
+// 		ft_write_char ((char)(temp + 55));
+// 	return (cont);
+// }
+
+// int	ft_write_hexadecimal_min(int num)
+// {
+// 	unsigned int	temp;
+// 	unsigned int	aux;
+// 	unsigned int	cont;
+// 	unsigned int	auxnum;
+
+// 	cont = 1;
+// 	auxnum = (unsigned int)num;
+// 	temp = auxnum % 16;
+// 	aux = auxnum / 16;
+// 	if (aux != 0)
+// 	{
+// 		cont += ft_write_hexadecimal_min(aux);
+// 	}
+// 	if (temp < 10)
+// 		ft_write_char ((char)(temp + 48));
+// 	else
+// 		ft_write_char ((char)(temp + 87));
+// 	return (cont);
+// }
 

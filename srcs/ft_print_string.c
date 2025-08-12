@@ -26,7 +26,7 @@ int	ft_write_string(const char *c)
 	cont = 0;
 	if (c == NULL)
 	{
-		write(1, "(null)", 6);
+		write(1, "(nill)", 6);
 		return (6);
 	}
 	while (c[cont] != 0)

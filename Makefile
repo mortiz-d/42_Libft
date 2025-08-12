@@ -50,6 +50,7 @@ SRCS = 	srcs/ft_memset.c 			\
 		srcs/ft_lstclear_bonus.c 	\
 		srcs/ft_lstiter_bonus.c 	\
 		srcs/ft_lstmap_bonus.c 		\
+		srcs/ft_print_string.c		\
 		srcs/ft_print_decimal.c 		\
 		srcs/ft_print_decimal.c 		\
 		srcs/ft_print_hexadecimal.c 		\
@@ -67,7 +68,7 @@ NAME = libft.a
 
 CC = gcc
 
-CFLAGS = -std=c99 -Wall -Werror -Wextra
+CFLAGS = -fPIC -std=c99 -Wall -Werror -Wextra
 
 AR = ar rcs
 

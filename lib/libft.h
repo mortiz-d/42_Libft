@@ -79,8 +79,8 @@ int		ft_write_pointer(const void *c);
 int		ft_write_decimal(int number);
 int		ft_write_integer(int number);
 int		ft_write_unsigned_integer(unsigned int number);
-int		ft_write_hexadecimal_min(int num);
-int		ft_write_hexadecimal_max(int num);
+int		ft_write_hexadecimal(unsigned long int num, char * str);
+int		ft_write_hexadecimal_XX(unsigned long int num, char * str,int end_loop,int limit_show,char c);
 int	    ft_write_size_t(size_t number);
 
 #endif

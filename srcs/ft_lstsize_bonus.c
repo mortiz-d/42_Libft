@@ -21,7 +21,6 @@ int	ft_lstsize(t_list *lst)
 		count = 1;
 		while (lst->next != 0)
 		{	
-			//printf("Content : %i\n",lst->content);
 			lst = lst->next;
 			count++;
 		}
