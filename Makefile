@@ -68,7 +68,7 @@ NAME = libft.a
 
 CC = gcc
 
-CFLAGS = -fPIC -std=c99 -Wall -Werror -Wextra
+CFLAGS = -fPIC -std=c99 -Wall -Werror -Wextra -g
 
 AR = ar rcs
 
