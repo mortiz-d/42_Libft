@@ -38,11 +38,11 @@ int is_exact_word(char *str, char *cmp)
 
 int is_key_word(char * str)
 {
-	char *aux[] = {"c","s","p","d","i","u","x","X","zu","04x","%"};
+	char *aux[] = {"c","s","p","d","i","u","x","X","zu","02x","04x","%"};
 	int i;
 
 	i = 0;
-	while (i <  11)
+	while (i <  12)
 		if (is_exact_word(str,aux[i++]))
 	 		return 1;
 	return 0;
@@ -137,6 +137,8 @@ static int	argument_managment(int cont, const char *c, va_list *argument) //void
 		return (ft_write_hexadecimal(va_arg(*argument, int),"0123456789abcdef"));
 	else if (is_exact_word(keyword,"04x"))						//HEXADECIMAL MIN
 		return (ft_write_hexadecimal_XX(va_arg(*argument, unsigned int),"0123456789abcdef",1,4,'0'));
+	else if (is_exact_word(keyword,"02x"))						//HEXADECIMAL MIN
+		return (ft_write_hexadecimal_XX(va_arg(*argument, unsigned int),"0123456789abcdef",1,2,'0'));
 	else if (is_exact_word(keyword,"X"))						//HEXADECIMAL MAX
 		return (ft_write_hexadecimal(va_arg(*argument, int),"0123456789ABCDEF"));
 	else
