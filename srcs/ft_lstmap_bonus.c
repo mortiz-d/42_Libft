@@ -14,7 +14,7 @@
 
 static	void	ft_free_all(t_list *start);
 
-t_list	*ft_lstmap(t_list *lst, t_list *lst_start, int(*f)(t_list*, int))
+t_list	*ft_lstmap(t_list *lst, t_list *lst_start, void *(*f)(t_list*, void *))
 {
 	t_list	*aux;
 	t_list	*start;
@@ -38,7 +38,7 @@ t_list	*ft_lstmap(t_list *lst, t_list *lst_start, int(*f)(t_list*, int))
 		{
 			ft_lstclear(&start);
 			ft_free_all(start);
-			return (0);
+			return (NULL);
 		}
 	}
 	return (start);

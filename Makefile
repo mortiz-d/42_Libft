@@ -41,6 +41,7 @@ SRCS = 	srcs/ft_memset.c 			\
 		srcs/ft_putnbr_fd.c 		\
 		srcs/ft_striteri.c 			\
 		srcs/ft_count_list.c 		\
+		srcs/ft_is_exact_word.c 	\
 		srcs/ft_lstnew_bonus.c 		\
 		srcs/ft_lstadd_front_bonus.c\
 		srcs/ft_lstsize_bonus.c 	\
@@ -58,7 +59,8 @@ SRCS = 	srcs/ft_memset.c 			\
 		srcs/ft_print_putnbr.c 		\
 		srcs/ft_print_size_t.c 		\
 		srcs/ft_print_unsigned_integer.c 		\
-		srcs/ft_printf.c
+		srcs/ft_printf.c \
+		srcs/flag/ft_flag.c
 
 
 # FLAGS #
@@ -82,6 +84,7 @@ ${NAME}: ${OBJS}
 # Rules for object files
 obj/%.o: srcs/%.c
 	@mkdir -p obj
+	@mkdir -p obj/flag
 	${CC} ${CFLAGS} -c $< -o $@
 	$(CYAN)Compiled LIBFT Object $< $(RESET)
 

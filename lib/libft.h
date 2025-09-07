@@ -20,10 +20,39 @@
 
 typedef struct s_list
 {
-	int				content;
+	void *			content;
 	struct s_list	*next;
 	struct s_list	*prev;
 }	t_list;
+
+
+enum flag_type {
+    FLAG_INTEGER,	//Needs an argument type integer
+    FLAG_STRING,     //Needs an argument type string
+	FLAG_CHAR,		//Needs an argument type char
+	FLAG_BOOLEAN,	//Needs an argument type boolean
+	FLAG_NONE		//Doesnt needs any argument, just the flag presence
+};
+
+typedef union s_argument {
+    int    i;
+    float  f;
+    double d;
+    char   c;
+    char  *s;
+} t_argument;
+
+typedef struct s_flag
+{
+	enum flag_type	type;
+	char			*name;
+	int 			min_range;
+	int 			max_range;
+	t_argument		*argument;
+	int				status;
+	struct s_flag	*next;
+	struct s_flag	*prev;
+}	t_flag;
 
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
@@ -31,6 +60,7 @@ int			ft_isalnum(int c);
 int			ft_isascii(int c);
 int			ft_isprint(int c);
 int			ft_strlen(const char *str);
+int 		ft_is_exact_word(char *str, char *cmp);
 void		*ft_memset(void *str, int c, size_t size);
 void		ft_bzero(void *s, size_t n);
 void		*ft_memcpy(void *dest, const void *src, size_t n);
@@ -60,15 +90,15 @@ void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
-t_list		*ft_lstnew(int content);
+t_list		*ft_lstnew(void * content);
 void		ft_lstadd_front(t_list **lst, t_list *new);
 int			ft_lstsize(t_list *lst);
 t_list		*ft_lstlast(t_list *lst);
 void		ft_lstadd_back(t_list **lst, t_list *new);
 void		ft_lstdelone(t_list *lst);
 void		ft_lstclear(t_list **lst);
-void		ft_lstiter(t_list *lst, void (*f)(int));
-t_list		*ft_lstmap(t_list *lst, t_list *lst_start, int(*f)(t_list*, int));
+void		ft_lstiter(t_list *lst, void (*f)(void *));
+t_list		*ft_lstmap(t_list *lst, t_list *lst_start, void *(*f)(t_list*, void *));
 
 //PRINTF
 void	ft_putnbr(int nb);
@@ -83,4 +113,11 @@ int		ft_write_hexadecimal(unsigned long int num, char * str);
 int		ft_write_hexadecimal_XX(unsigned long int num, char * str,int end_loop,int limit_show,char c);
 int	    ft_write_size_t(size_t number);
 
+//FLAGS
+t_flag *set_up_flag(t_flag *flag,char * name, enum flag_type type,int min_range,int max_range);
+t_flag *find_flag(t_flag *flag, char *c);
+int check_flag_status(t_flag *start_flag, char *c);
+t_argument *get_flag_value(t_flag *start_flag, char *c);
+int process_flags(int argc, char **argv, t_flag *flag);
+void visualize_flags(t_flag *flag);
 #endif
