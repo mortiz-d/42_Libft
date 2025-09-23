@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 12:51:39 by mortiz-d          #+#    #+#             */
-/*   Updated: 2021/12/21 10:41:43 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2025/09/23 20:19:52 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,28 @@
 # include <stdio.h>
 # include <stdarg.h>
 
+typedef struct s_huffman_count_list
+{
+	int count;
+	char c;
+}	t_huffman_count_list;
+
+
+typedef struct s_binary_tree
+{
+	int						count;
+	int						content;
+	struct s_binary_tree	*left; 
+	struct s_binary_tree	*right;
+} t_binary_tree;
+
+
 typedef struct s_list
 {
-	void *			content;
+	void			*content;
 	struct s_list	*next;
 	struct s_list	*prev;
 }	t_list;
-
 
 enum flag_type {
     FLAG_INTEGER,	//Needs an argument type integer
@@ -120,4 +135,17 @@ int check_flag_status(t_flag *start_flag, char *c);
 t_argument *get_flag_value(t_flag *start_flag, char *c);
 int process_flags(int argc, char **argv, t_flag *flag);
 void visualize_flags(t_flag *flag);
+
+//HUFFMAN
+void ft_visualize_huffman_list(t_list *lst);
+t_list *ft_count_huffman_character(t_list *lst, char c);
+
+//BINARY TREE
+t_binary_tree   *ft_binarytree_create(int content);
+t_binary_tree   *ft_binarytree_insert(t_binary_tree	*tree, int new_value);
+t_binary_tree	*ft_binarytree_minValue(t_binary_tree *tree);
+t_binary_tree	*ft_binarytree_maxValue(t_binary_tree *tree);
+t_binary_tree	*ft_binarytree_delete(t_binary_tree* tree, int content);
+void			ft_binarytree_visualize(t_binary_tree *tree);
+// ft_binarytree_visualize
 #endif

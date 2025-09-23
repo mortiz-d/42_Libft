@@ -52,15 +52,22 @@ SRCS = 	srcs/ft_memset.c 			\
 		srcs/ft_lstiter_bonus.c 	\
 		srcs/ft_lstmap_bonus.c 		\
 		srcs/ft_print_string.c		\
-		srcs/ft_print_decimal.c 		\
-		srcs/ft_print_decimal.c 		\
+		srcs/ft_print_decimal.c 			\
+		srcs/ft_print_decimal.c 			\
 		srcs/ft_print_hexadecimal.c 		\
-		srcs/ft_print_pointer.c 		\
-		srcs/ft_print_putnbr.c 		\
-		srcs/ft_print_size_t.c 		\
-		srcs/ft_print_unsigned_integer.c 		\
-		srcs/ft_printf.c \
-		srcs/flag/ft_flag.c
+		srcs/ft_print_pointer.c 			\
+		srcs/ft_print_putnbr.c 				\
+		srcs/ft_print_size_t.c 				\
+		srcs/ft_print_unsigned_integer.c	\
+		srcs/ft_printf.c					\
+		srcs/flag/ft_flag.c					\
+		srcs/huffman_compresion/character_list.c	\
+		srcs/binary_tree/find_value_binary_tree.c	\
+		srcs/binary_tree/delete_value_binary_tree.c	\
+		srcs/binary_tree/create_binary_tree.c		\
+		srcs/binary_tree/insert_value_binary_tree.c	\
+		srcs/binary_tree/visualice_binary_tree.c
+
 
 
 # FLAGS #
@@ -85,6 +92,8 @@ ${NAME}: ${OBJS}
 obj/%.o: srcs/%.c
 	@mkdir -p obj
 	@mkdir -p obj/flag
+	@mkdir -p obj/huffman_compresion
+	@mkdir -p obj/binary_tree
 	${CC} ${CFLAGS} -c $< -o $@
 	$(CYAN)Compiled LIBFT Object $< $(RESET)
 

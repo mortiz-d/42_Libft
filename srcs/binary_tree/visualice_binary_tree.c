@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   visualice_binary_tree.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/12 18:56:39 by mortiz-d          #+#    #+#             */
-/*   Updated: 2024/12/05 19:23:20 by mortiz-d         ###   ########.fr       */
+/*   Created: 2025/09/23 20:04:29 by mortiz-d          #+#    #+#             */
+/*   Updated: 2025/09/23 23:09:08 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft.h"
+#include "../../lib/libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
-{
-	if (*lst != 0)
-	{
-		new->prev = ft_lstlast(*lst);
-		ft_lstlast(*lst)->next = new;
-	}
-	else
-		*lst = new;
+void ft_binarytree_visualize(t_binary_tree* tree) {
+    if (tree) {
+        ft_binarytree_visualize(tree->left);
+        printf("%c ( %d ) \n", tree->content, tree->count);
+        ft_binarytree_visualize(tree->right);
+    }
 }
