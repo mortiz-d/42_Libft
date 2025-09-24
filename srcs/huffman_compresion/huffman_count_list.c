@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   visualice_binary_tree.c                            :+:      :+:    :+:   */
+/*   huffman_count_list.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/23 20:04:29 by mortiz-d          #+#    #+#             */
-/*   Updated: 2025/09/23 23:30:04 by mortiz-d         ###   ########.fr       */
+/*   Created: 2025/09/23 23:46:54 by mortiz-d          #+#    #+#             */
+/*   Updated: 2025/09/24 00:02:38 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "../../lib/libft.h"
 
-void ft_binarytree_visualize(t_binary_tree* tree) {
-    if (tree) {
-        ft_binarytree_visualize(tree->left);
-        printf("%d ( %d ) \n", tree->content, tree->count);
-        ft_binarytree_visualize(tree->right);
+int ft_count_huffman_list(t_list *lst)
+{
+    t_list *aux;
+    int count;
+
+    count = 0;
+    if (!lst)
+        return (count);
+    aux = lst;
+
+    while (aux)
+    {
+        count++;
+        aux = aux->next;
     }
+
+    return (count);
 }

@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 12:51:39 by mortiz-d          #+#    #+#             */
-/*   Updated: 2025/09/23 20:19:52 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2025/09/24 14:11:12 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,10 @@ int process_flags(int argc, char **argv, t_flag *flag);
 void visualize_flags(t_flag *flag);
 
 //HUFFMAN
-void ft_visualize_huffman_list(t_list *lst);
-t_list *ft_count_huffman_character(t_list *lst, char c);
+t_list 	*ft_count_huffman_character(t_list *lst, char c);
+int 	ft_count_huffman_list(t_list *lst);
+void 	ft_visualize_huffman_list(t_list *lst);
+void	fd_huffman_destroy_list(t_list *lst);
 
 //BINARY TREE
 t_binary_tree   *ft_binarytree_create(int content);

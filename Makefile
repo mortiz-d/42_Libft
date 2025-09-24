@@ -62,6 +62,10 @@ SRCS = 	srcs/ft_memset.c 			\
 		srcs/ft_printf.c					\
 		srcs/flag/ft_flag.c					\
 		srcs/huffman_compresion/character_list.c	\
+		srcs/huffman_compresion/huffman_destroy_list.c	\
+		srcs/huffman_compresion/huffman_count_list.c	\
+		srcs/huffman_compresion/huffman_list.c	\
+		srcs/huffman_compresion/huffman_visualize.c	\
 		srcs/binary_tree/find_value_binary_tree.c	\
 		srcs/binary_tree/delete_value_binary_tree.c	\
 		srcs/binary_tree/create_binary_tree.c		\

@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   visualice_binary_tree.c                            :+:      :+:    :+:   */
+/*   huffman_destroy_list.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/23 20:04:29 by mortiz-d          #+#    #+#             */
-/*   Updated: 2025/09/23 23:30:04 by mortiz-d         ###   ########.fr       */
+/*   Created: 2025/09/24 13:58:27 by mortiz-d          #+#    #+#             */
+/*   Updated: 2025/09/24 14:14:11 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../lib/libft.h"
 
-void ft_binarytree_visualize(t_binary_tree* tree) {
-    if (tree) {
-        ft_binarytree_visualize(tree->left);
-        printf("%d ( %d ) \n", tree->content, tree->count);
-        ft_binarytree_visualize(tree->right);
+void fd_huffman_destroy_list(t_list *lst)
+{
+    t_list *aux;
+    if (!lst)
+        return;
+    aux = lst;
+
+    while (aux)
+    {
+        free(aux->content);
+        aux = aux->next;
     }
+    ft_lstclear(&lst);
+    return;
 }
