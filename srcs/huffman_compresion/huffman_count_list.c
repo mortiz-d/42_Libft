@@ -6,17 +6,17 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 23:46:54 by mortiz-d          #+#    #+#             */
-/*   Updated: 2025/09/24 00:02:38 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2025/09/27 13:05:38 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../../lib/libft.h"
 
-int ft_count_huffman_list(t_list *lst)
+size_t ft_huffman_list_count(t_list *lst)
 {
     t_list *aux;
-    int count;
+    size_t count;
 
     count = 0;
     if (!lst)
@@ -31,3 +31,4 @@ int ft_count_huffman_list(t_list *lst)
 
     return (count);
 }
+

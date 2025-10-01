@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 16:30:50 by mortiz-d          #+#    #+#             */
-/*   Updated: 2025/09/23 23:51:01 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2025/09/24 17:03:13 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 
 
-static t_list *find_character_in_list(t_list *lst, char c)
+t_list *ft_huffman_find(t_list *lst, char c)
 {
     t_list *aux;
     if (!lst)
@@ -32,7 +32,7 @@ static t_list *find_character_in_list(t_list *lst, char c)
     return (NULL);
 }
 
-t_list *ft_count_huffman_character(t_list *lst, char c)
+t_list *ft_huffman_add_character(t_list *lst, char c)
 {
     t_huffman_count_list *aux_huff;
     t_list *aux;
@@ -46,7 +46,7 @@ t_list *ft_count_huffman_character(t_list *lst, char c)
     }
     else
     {
-        aux = find_character_in_list(lst,c);
+        aux = ft_huffman_find(lst,c);
         if (!aux)
         {
             aux_huff = calloc(1,sizeof(t_huffman_count_list));
