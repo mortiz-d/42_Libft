@@ -61,7 +61,6 @@ SRCS = 	srcs/ft_memset.c 			\
 		srcs/ft_print_unsigned_integer.c	\
 		srcs/ft_printf.c					\
 		srcs/flag/ft_flag.c					\
-		srcs/huffman_compresion/character_list.c	\
 		srcs/huffman_compresion/huffman_destroy_list.c	\
 		srcs/huffman_compresion/huffman_count_list.c	\
 		srcs/huffman_compresion/huffman_calculate_size.c\
@@ -71,7 +70,9 @@ SRCS = 	srcs/ft_memset.c 			\
 		srcs/binary_tree/delete_value_binary_tree.c	\
 		srcs/binary_tree/create_binary_tree.c		\
 		srcs/binary_tree/insert_value_binary_tree.c	\
-		srcs/binary_tree/visualice_binary_tree.c
+		srcs/binary_tree/visualice_binary_tree.c	\
+		srcs/get_next_line/get_next_line.c			\
+		srcs/get_next_line/aux_get_next_line.c
 
 
 
@@ -98,6 +99,7 @@ obj/%.o: srcs/%.c
 	@mkdir -p obj
 	@mkdir -p obj/flag
 	@mkdir -p obj/huffman_compresion
+	@mkdir -p obj/get_next_line
 	@mkdir -p obj/binary_tree
 	${CC} ${CFLAGS} -c $< -o $@
 	$(CYAN)Compiled LIBFT Object $< $(RESET)

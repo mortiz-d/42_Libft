@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 12:51:39 by mortiz-d          #+#    #+#             */
-/*   Updated: 2025/09/27 13:05:42 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2026/01/11 23:58:58 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ int check_flag_status(t_flag *start_flag, char *c);
 t_argument *get_flag_value(t_flag *start_flag, char *c);
 int process_flags(int argc, char **argv, t_flag *flag);
 void visualize_flags(t_flag *flag);
+void	ft_flagclear(t_flag **lst);
 
 //HUFFMAN
 t_list *ft_huffman_find(t_list *lst, char c);

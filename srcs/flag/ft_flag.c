@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 13:20:50 by mortiz-d          #+#    #+#             */
-/*   Updated: 2025/09/02 14:01:33 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2026/01/10 19:08:51 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void visualize_flags(t_flag *flag)
 	aux = flag;
 	while (aux)
 	{
-		ft_printf("FLAG %p : %s range : %d - %d status : %d next %p \n",flag ,(aux)->name, (aux)->min_range,(aux)->max_range, (aux)->status, (aux)->next);
+		ft_printf("FLAG %p : %s range : %d - %d status : %d type : %d next %p \n",flag ,(aux)->name, (aux)->min_range,(aux)->max_range, (aux)->status, (aux)->type ,(aux)->next);
 		aux = aux->next;
 	}
 	return;
@@ -206,11 +206,6 @@ t_flag *find_flag(t_flag *flag, char *c)
 
 }
 
-
-
-
-
-
 int valid_argument(char *str,t_flag *flag,enum flag_type type ,int max_range, int min_range)
 {
 	char *aux_c;
@@ -270,7 +265,7 @@ int valid_argument(char *str,t_flag *flag,enum flag_type type ,int max_range, in
 }
 
 
-
+//Procesado correcto 1 / Error 0
 int process_flags(int argc, char **argv, t_flag *flag)
 {
 	int i = 1;
