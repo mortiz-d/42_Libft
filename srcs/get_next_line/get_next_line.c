@@ -6,12 +6,13 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 13:47:09 by mortiz-d          #+#    #+#             */
-/*   Updated: 2026/01/13 00:08:39 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2026/05/20 21:24:53 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../lib/get_next_line.h"
 
+//Noted : theres a bug that if we dont finish gnl we leave data saved but reachable , all input must end in \0
 static char	*get_str(char *str);
 static char	*get_extra(char *str, char *pin);
 static char	*read_buffer(int fd, char *str);

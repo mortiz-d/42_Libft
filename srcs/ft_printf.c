@@ -12,7 +12,7 @@
 
 #include "../lib/libft.h"
 
-static int	argument_managment(int cont, const char *c, va_list *argument);// void *var);
+static int	argument_managment(int cont, const char *c, va_list argument);// void *var);
 static int	print_format(int cont, const char *c, va_list argument);
 
 int	ft_printf(const char *c, ...)
@@ -88,7 +88,7 @@ static int	print_format(int cont, const char *c, va_list argument)
 		if (c[cont] == '%')
 		{
 			if (check_argument(cont,c,0))
-				retorno += argument_managment(cont, c, &argument );//va_arg(argument, void *));
+				retorno += argument_managment(cont, c, argument );//va_arg(argument, void *));
 			else
 				retorno += ft_write_char(c[cont]);//retorno += argument_managment(cont, c, NULL);
 			cont+=check_argument(cont,c,1);
@@ -100,7 +100,7 @@ static int	print_format(int cont, const char *c, va_list argument)
 	return (retorno);
 }
 
-static int	argument_managment(int cont, const char *c, va_list *argument) //void *var) 
+static int	argument_managment(int cont, const char *c, va_list argument) //void *var) 
 {
 	char keyword[4];
 
@@ -122,25 +122,25 @@ static int	argument_managment(int cont, const char *c, va_list *argument) //void
 	}
 
 	if (is_exact_word(keyword,"c"))								//CHARACTER
-		return (ft_write_char (va_arg(*argument, int)));
+		return (ft_write_char (va_arg(argument, int)));
 	else if (is_exact_word(keyword,"zu"))						//SIZE_T
-		return (ft_write_size_t(va_arg(*argument, size_t)));
+		return (ft_write_size_t(va_arg(argument, size_t)));
 	else if (is_exact_word(keyword,"s"))						//STRING
-		return (ft_write_string(va_arg(*argument, char *)));
+		return (ft_write_string(va_arg(argument, char *)));
 	else if (is_exact_word(keyword,"p"))						//POINTER
-		return (ft_write_pointer(va_arg(*argument, void *)));
+		return (ft_write_pointer(va_arg(argument, void *)));
 	else if (is_exact_word(keyword,"d") || is_exact_word(keyword,"i") )	//DECIMAL && //INTEGER
-		return (ft_write_decimal(va_arg(*argument, int )));
+		return (ft_write_decimal(va_arg(argument, int )));
 	else if (is_exact_word(keyword,"u"))						//UNSIGNED INTEGER
-		return (ft_write_unsigned_integer(va_arg(*argument, unsigned int)));
+		return (ft_write_unsigned_integer(va_arg(argument, unsigned int)));
 	else if (is_exact_word(keyword,"x"))						//HEXADECIMAL MIN
-		return (ft_write_hexadecimal(va_arg(*argument, int),"0123456789abcdef"));
+		return (ft_write_hexadecimal(va_arg(argument, int),"0123456789abcdef"));
 	else if (is_exact_word(keyword,"04x"))						//HEXADECIMAL MIN
-		return (ft_write_hexadecimal_XX(va_arg(*argument, unsigned int),"0123456789abcdef",1,4,'0'));
+		return (ft_write_hexadecimal_XX(va_arg(argument, unsigned int),"0123456789abcdef",1,4,'0'));
 	else if (is_exact_word(keyword,"02x"))						//HEXADECIMAL MIN
-		return (ft_write_hexadecimal_XX(va_arg(*argument, unsigned int),"0123456789abcdef",1,2,'0'));
+		return (ft_write_hexadecimal_XX(va_arg(argument, unsigned int),"0123456789abcdef",1,2,'0'));
 	else if (is_exact_word(keyword,"X"))						//HEXADECIMAL MAX
-		return (ft_write_hexadecimal(va_arg(*argument, int),"0123456789ABCDEF"));
+		return (ft_write_hexadecimal(va_arg(argument, int),"0123456789ABCDEF"));
 	else
 		return (ft_write_char('%'));
 
