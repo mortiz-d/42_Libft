@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 12:51:39 by mortiz-d          #+#    #+#             */
-/*   Updated: 2026/01/11 23:58:58 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2026/06/07 16:34:29 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,8 @@ void		ft_lstdelone(t_list *lst);
 void		ft_lstclear(t_list **lst);
 void		ft_lstiter(t_list *lst, void (*f)(void *));
 t_list		*ft_lstmap(t_list *lst, t_list *lst_start, void *(*f)(t_list*, void *));
+void 		ft_lstsort(t_list *lst, int (*cmp)(void *, void *));
+
 
 //PRINTF
 void	ft_putnbr(int nb);
