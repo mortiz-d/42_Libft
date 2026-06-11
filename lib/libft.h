@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 12:51:39 by mortiz-d          #+#    #+#             */
-/*   Updated: 2026/06/07 16:34:29 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2026/06/11 21:07:09 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,16 +109,21 @@ void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
+//LST
 t_list		*ft_lstnew(void * content);
 void		ft_lstadd_front(t_list **lst, t_list *new);
 int			ft_lstsize(t_list *lst);
+t_list		*ft_lstfirst(t_list *lst);
 t_list		*ft_lstlast(t_list *lst);
+t_list  *ft_lst_mv_up_circular(t_list *lst);
+t_list  *ft_lst_mv_down_circular(t_list *lst);
 void		ft_lstadd_back(t_list **lst, t_list *new);
 void		ft_lstdelone(t_list *lst);
 void		ft_lstclear(t_list **lst);
 void		ft_lstiter(t_list *lst, void (*f)(void *));
 t_list		*ft_lstmap(t_list *lst, t_list *lst_start, void *(*f)(t_list*, void *));
 void 		ft_lstsort(t_list *lst, int (*cmp)(void *, void *));
+void 		ft_lst_rm_fromlst(t_list **head, t_list *node, void (*del)(void *));
 
 
 //PRINTF

@@ -46,6 +46,10 @@ SRCS = 	srcs/ft_memset.c 			\
 		srcs/ft_lstnew_bonus.c 		\
 		srcs/ft_lstadd_front_bonus.c\
 		srcs/ft_lstsize_bonus.c 	\
+		srcs/ft_lst_rm_fromlst.c    \
+		srcs/ft_lst_mv_circular.c   \
+		srcs/ft_lst_mv.c            \
+		srcs/ft_lstfirst.c 	        \
 		srcs/ft_lstlast_bonus.c 	\
 		srcs/ft_lstadd_back_bonus.c \
 		srcs/ft_lstdelone_bonus.c 	\
