@@ -57,6 +57,7 @@ SRCS = 	srcs/ft_memset.c 			\
 		srcs/ft_lstiter_bonus.c 	\
 		srcs/ft_lstmap_bonus.c 		\
 		srcs/ft_lstsort.c   		\
+		srcs/ft_lstfind_match.c   	\
 		srcs/ft_print_string.c		\
 		srcs/ft_print_decimal.c 			\
 		srcs/ft_print_decimal.c 			\

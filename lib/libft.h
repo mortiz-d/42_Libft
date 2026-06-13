@@ -6,7 +6,7 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 12:51:39 by mortiz-d          #+#    #+#             */
-/*   Updated: 2026/06/11 21:07:09 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2026/06/12 22:44:27 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void		ft_lstiter(t_list *lst, void (*f)(void *));
 t_list		*ft_lstmap(t_list *lst, t_list *lst_start, void *(*f)(t_list*, void *));
 void 		ft_lstsort(t_list *lst, int (*cmp)(void *, void *));
 void 		ft_lst_rm_fromlst(t_list **head, t_list *node, void (*del)(void *));
-
+t_list *ft_lstfind_match(t_list *lst, int (*f)(void *, void *), void *ctx);
 
 //PRINTF
 void	ft_putnbr(int nb);
