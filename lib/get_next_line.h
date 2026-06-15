@@ -20,8 +20,6 @@
 # endif
 
 char		*get_next_line(int fd);
-int			ft_write_char(int c);
-int			ft_write_string(const char *c);
 int			ft_strlen_gnl(const char *str);
 char		*ft_strchr_gnl(const char *s, int c);
 void		*ft_memcpy_gnl(void *dest, const void *src, size_t n);

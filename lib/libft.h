@@ -127,17 +127,13 @@ void 		ft_lst_rm_fromlst(t_list **head, t_list *node, void (*del)(void *));
 t_list *ft_lstfind_match(t_list *lst, int (*f)(void *, void *), void *ctx);
 
 //PRINTF
-void	ft_putnbr(int nb);
 int		ft_printf(const char *c, ...);
-int		ft_write_char(int c);
-int		ft_write_string(const char *c);
-int		ft_write_pointer(const void *c);
-int		ft_write_decimal(int number);
-int		ft_write_integer(int number);
-int		ft_write_unsigned_integer(unsigned int number);
-int		ft_write_hexadecimal(unsigned long int num, char * str);
-int		ft_write_hexadecimal_XX(unsigned long int num, char * str,int end_loop,int limit_show,char c);
-int	    ft_write_size_t(size_t number);
+int		ft_dprintf(int fd, const char *c, ...);
+int		ft_write_char(int fd, int c);
+int		ft_write_string(int fd, const char *c);
+int		ft_write_pointer(int fd, const void *c);
+int		ft_write_decimal(int fd, int number, int width, char pad);
+int		ft_write_nbr_base(int fd, unsigned long n, const char *base, int width, char pad);
 
 //FLAGS
 

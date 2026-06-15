@@ -58,15 +58,11 @@ SRCS = 	srcs/ft_memset.c 			\
 		srcs/ft_lstmap_bonus.c 		\
 		srcs/ft_lstsort.c   		\
 		srcs/ft_lstfind_match.c   	\
-		srcs/ft_print_string.c		\
-		srcs/ft_print_decimal.c 			\
-		srcs/ft_print_decimal.c 			\
-		srcs/ft_print_hexadecimal.c 		\
-		srcs/ft_print_pointer.c 			\
-		srcs/ft_print_putnbr.c 				\
-		srcs/ft_print_size_t.c 				\
-		srcs/ft_print_unsigned_integer.c	\
-		srcs/ft_printf.c					\
+		srcs/printf/ft_print_string.c		\
+		srcs/printf/ft_print_decimal.c 			\
+		srcs/printf/ft_print_pointer.c 			\
+		srcs/printf/ft_print_putnbr.c 				\
+		srcs/printf/ft_printf.c					\
 		srcs/flag/ft_flag.c					\
 		srcs/flag/ft_flag_visualice.c		\
 		srcs/huffman_compresion/huffman_destroy_list.c	\
@@ -106,6 +102,7 @@ ${NAME}: ${OBJS}
 obj/%.o: srcs/%.c
 	@mkdir -p obj
 	@mkdir -p obj/flag
+	@mkdir -p obj/printf
 	@mkdir -p obj/huffman_compresion
 	@mkdir -p obj/get_next_line
 	@mkdir -p obj/binary_tree
