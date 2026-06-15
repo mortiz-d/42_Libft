@@ -1,47 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_write_decimal.c                                 :+:      :+:    :+:   */
+/*   ft_print_string.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 10:35:42 by mortiz-d          #+#    #+#             */
-/*   Updated: 2021/11/30 17:34:57 by mortiz-d         ###   ########.fr       */
+/*   Created: 2021/11/22 10:44:15 by mortiz-d          #+#    #+#             */
+/*   Updated: 2026/06/15 00:00:00 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft.h"
+#include "../../lib/libft.h"
 
-int	ft_write_integer(int number)
+// c
+int	ft_write_char(int fd, int c)
 {
-	int	cont;
-
-	if (number < 0)
-		cont = 2;
-	else
-		cont = 1;
-	ft_putnbr(number);
-	while (number / 10 != 0)
-	{
-		number /= 10;
-		cont++;
-	}
-	return (cont);
+	write(fd, &c, 1);
+	return (1);
 }
 
-int	ft_write_decimal(int number)
+// s
+int	ft_write_string(int fd, const char *c)
 {
-	int	cont;
+	int	n;
 
-	if (number < 0)
-		cont = 2;
-	else
-		cont = 1;
-	ft_putnbr(number);
-	while (number / 10 != 0)
-	{
-		number /= 10;
-		cont++;
-	}
-	return (cont);
+	if (!c)
+		c = "(null)";
+	n = 0;
+	while (c[n])
+		n++;
+	write(fd, c, n);
+	return (n);
 }

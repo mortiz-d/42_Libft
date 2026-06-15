@@ -1,55 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_print_putnbr.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 10:15:49 by mortiz-d          #+#    #+#             */
-/*   Updated: 2021/11/22 16:31:02 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2026/06/15 00:00:00 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft.h"
+#include "../../lib/libft.h"
 
-void	ft_putnbr(int nb);
-void	ft_putchar(char c);
-void	alznum(int n);
-
-void	ft_putchar(char c)
+static int	base_len(const char *base)
 {
-	write(1, &c, 1);
+	int	n;
+
+	n = 0;
+	while (base[n])
+		n++;
+	return (n);
 }
 
-void	alznum(int n)
-{	
-	int	x;
 
-	x = n % 10;
-	if (n / 10 != 0)
-		alznum(n / 10);
-	ft_putchar(x + '0');
-}
-
-void	ft_putnbr(int nb)
+// u / x / X / zu
+int	ft_write_nbr_base(int fd, unsigned long n, const char *base, int width,
+		char pad)
 {
-	if (nb <= 2147483647 && nb >= 0)
-		alznum(nb);
-	else if (nb < 0)
+	char	buf[64];
+	int		len;
+	int		b;
+	int		written;
+
+	b = base_len(base);
+	len = 0;
+	if (n == 0)
+		buf[len++] = base[0];
+	while (n > 0)
 	{
-		if (nb == -2147483648)
-		{
-			nb = nb / 10;
-			nb = nb * -1;
-			ft_putchar('-');
-			alznum(nb);
-			ft_putchar('8');
-		}
-		else
-		{
-			nb = nb * -1;
-			ft_putchar('-');
-			alznum(nb);
-		}		
+		buf[len++] = base[n % b];
+		n /= b;
 	}
+	written = 0;
+	while (written + len < width)
+		written += ft_write_char(fd, pad);
+	while (len-- > 0)
+		written += ft_write_char(fd, buf[len]);
+	return (written);
 }
