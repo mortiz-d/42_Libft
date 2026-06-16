@@ -35,30 +35,30 @@ static int	write_str(int fd, const char *str, int width)
 	return (w + ft_write_string(fd, str));
 }
 
-static int	dispatch(int fd, char conv, t_spec *s, va_list ap)
+static int	dispatch(int fd, char conv, t_spec *s, va_list *ap)
 {
 	switch (conv)
 	{
 		case 'c':
-			return (ft_write_char(fd, (char)va_arg(ap, int)));
+			return (ft_write_char(fd, (char)va_arg(*ap, int)));
 		case 's':
-			return (write_str(fd, va_arg(ap, char *), s->width));
+			return (write_str(fd, va_arg(*ap, char *), s->width));
 		case 'p':
-			return (ft_write_pointer(fd, va_arg(ap, void *)));
+			return (ft_write_pointer(fd, va_arg(*ap, void *)));
 		case 'd':
 		case 'i':
-			return (ft_write_decimal(fd, va_arg(ap, int), s->width, s->pad));
+			return (ft_write_decimal(fd, va_arg(*ap, int), s->width, s->pad));
 		case 'u':
 			if (s->is_size)
-				return (ft_write_nbr_base(fd, va_arg(ap, size_t),
+				return (ft_write_nbr_base(fd, va_arg(*ap, size_t),
 						"0123456789", s->width, s->pad));
-			return (ft_write_nbr_base(fd, va_arg(ap, unsigned int),
+			return (ft_write_nbr_base(fd, va_arg(*ap, unsigned int),
 					"0123456789", s->width, s->pad));
 		case 'x':
-			return (ft_write_nbr_base(fd, va_arg(ap, unsigned int),
+			return (ft_write_nbr_base(fd, va_arg(*ap, unsigned int),
 					"0123456789abcdef", s->width, s->pad));
 		case 'X':
-			return (ft_write_nbr_base(fd, va_arg(ap, unsigned int),
+			return (ft_write_nbr_base(fd, va_arg(*ap, unsigned int),
 					"0123456789ABCDEF", s->width, s->pad));
 		case '%':
 			return (ft_write_char(fd, '%'));
@@ -67,7 +67,7 @@ static int	dispatch(int fd, char conv, t_spec *s, va_list ap)
 	}
 }
 
-static int	render(int fd, t_spec *s, va_list ap)
+static int	render(int fd, t_spec *s, va_list *ap)
 {
 	t_spec	natural;
 	int		n;
@@ -83,7 +83,7 @@ static int	render(int fd, t_spec *s, va_list ap)
 	return (n);
 }
 
-static int	parse_spec(const char *c, int i, t_spec *s, va_list ap)
+static int	parse_spec(const char *c, int i, t_spec *s, va_list *ap)
 {
 	s->pad = ' ';
 	s->left = 0;
@@ -98,7 +98,7 @@ static int	parse_spec(const char *c, int i, t_spec *s, va_list ap)
 	}
 	if (c[i] == '*')
 	{
-		s->width = va_arg(ap, int);
+		s->width = va_arg(*ap, int);
 		if (s->width < 0)
 		{
 			s->left = 1;
@@ -121,7 +121,7 @@ static int	parse_spec(const char *c, int i, t_spec *s, va_list ap)
 	return (i);
 }
 
-static int	format_fd(int fd, const char *c, va_list ap)
+static int	format_fd(int fd, const char *c, va_list *ap)
 {
 	t_spec	spec;
 	int		total;
@@ -151,7 +151,7 @@ int	ft_printf(const char *c, ...)
 	int		total;
 
 	va_start(ap, c);
-	total = format_fd(1, c, ap);
+	total = format_fd(1, c, &ap);
 	va_end(ap);
 	return (total);
 }
@@ -162,7 +162,7 @@ int	ft_dprintf(int fd, const char *c, ...)
 	int		total;
 
 	va_start(ap, c);
-	total = format_fd(fd, c, ap);
+	total = format_fd(fd, c, &ap);
 	va_end(ap);
 	return (total);
 }
