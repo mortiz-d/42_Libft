@@ -6,38 +6,72 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 08:53:26 by mortiz-d          #+#    #+#             */
-/*   Updated: 2026/06/15 00:00:00 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2026/06/16 00:00:00 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+** ft_printf / ft_dprintf con parser estilo printf real:
+**
+**     %  [flags '-' '0']  [ancho: digitos o '*']  [longitud 'z']  conversion
+**
+**   - '-' justifica a la izquierda; '*' toma el ancho del siguiente argumento
+**   - ancho como MINIMO (rellena con espacio o cero), nunca trunca
+**   - Conversiones: c s p d i u x X % , con %zu y ancho/relleno
+*/
+
 #include "../../lib/libft.h"
 
-static int	dispatch(int fd, char conv, int width, char pad, int is_size,
-		va_list ap)
+typedef struct s_spec
+{
+	int		width;
+	char	pad;
+	int		left;
+	int		is_size;
+	char	conv;
+}	t_spec;
+
+/* Cadena con ancho minimo, rellenando con espacios por la izquierda. */
+static int	write_str(int fd, const char *str, int width)
+{
+	int	len;
+	int	w;
+
+	if (!str)
+		str = "(null)";
+	len = ft_strlen(str);
+	w = 0;
+	while (w + len < width)
+		w += ft_write_char(fd, ' ');
+	return (w + ft_write_string(fd, str));
+}
+
+/* Emite la conversion ya parseada, justificada a la derecha (ancho minimo). */
+static int	dispatch(int fd, char conv, t_spec *s, va_list ap)
 {
 	switch (conv)
 	{
 		case 'c':
 			return (ft_write_char(fd, (char)va_arg(ap, int)));
 		case 's':
-			return (ft_write_string(fd, va_arg(ap, char *)));
+			return (write_str(fd, va_arg(ap, char *), s->width));
 		case 'p':
 			return (ft_write_pointer(fd, va_arg(ap, void *)));
 		case 'd':
 		case 'i':
-			return (ft_write_decimal(fd, va_arg(ap, int), width, pad));
+			return (ft_write_decimal(fd, va_arg(ap, int), s->width, s->pad));
 		case 'u':
-			if (is_size)
+			if (s->is_size)
 				return (ft_write_nbr_base(fd, va_arg(ap, size_t),
-						"0123456789", width, pad));
+						"0123456789", s->width, s->pad));
 			return (ft_write_nbr_base(fd, va_arg(ap, unsigned int),
-					"0123456789", width, pad));
+					"0123456789", s->width, s->pad));
 		case 'x':
 			return (ft_write_nbr_base(fd, va_arg(ap, unsigned int),
-					"0123456789abcdef", width, pad));
+					"0123456789abcdef", s->width, s->pad));
 		case 'X':
 			return (ft_write_nbr_base(fd, va_arg(ap, unsigned int),
-					"0123456789ABCDEF", width, pad));
+					"0123456789ABCDEF", s->width, s->pad));
 		case '%':
 			return (ft_write_char(fd, '%'));
 		default:
@@ -45,12 +79,70 @@ static int	dispatch(int fd, char conv, int width, char pad, int is_size,
 	}
 }
 
+/*
+** Justificacion a la izquierda: imprime el contenido con su ancho natural
+** (ancho 0) y rellena con espacios a la derecha hasta alcanzar el ancho.
+*/
+static int	render(int fd, t_spec *s, va_list ap)
+{
+	t_spec	natural;
+	int		n;
+
+	if (!s->left)
+		return (dispatch(fd, s->conv, s, ap));
+	natural = *s;
+	natural.width = 0;
+	natural.pad = ' ';
+	n = dispatch(fd, s->conv, &natural, ap);
+	while (n < s->width)
+		n += ft_write_char(fd, ' ');
+	return (n);
+}
+
+/* Lee flags, ancho (digitos o '*') y longitud 'z'; deja i sobre la conversion. */
+static int	parse_spec(const char *c, int i, t_spec *s, va_list ap)
+{
+	s->pad = ' ';
+	s->left = 0;
+	s->is_size = 0;
+	while (c[i] == '-' || c[i] == '0')
+	{
+		if (c[i] == '-')
+			s->left = 1;
+		else
+			s->pad = '0';
+		i++;
+	}
+	if (c[i] == '*')
+	{
+		s->width = va_arg(ap, int);
+		if (s->width < 0)
+		{
+			s->left = 1;
+			s->width = -s->width;
+		}
+		i++;
+	}
+	else
+	{
+		s->width = 0;
+		while (c[i] >= '0' && c[i] <= '9')
+			s->width = s->width * 10 + (c[i++] - '0');
+	}
+	if (c[i] == 'z')
+	{
+		s->is_size = 1;
+		i++;
+	}
+	s->conv = c[i];
+	return (i);
+}
+
 static int	format_fd(int fd, const char *c, va_list ap)
 {
+	t_spec	spec;
 	int		total;
 	int		i;
-	int		width;
-	char	pad;
 
 	total = 0;
 	i = 0;
@@ -61,25 +153,11 @@ static int	format_fd(int fd, const char *c, va_list ap)
 			total += ft_write_char(fd, c[i++]);
 			continue ;
 		}
-		i++;
-		pad = ' ';
-		if (c[i] == '0')
-		{
-			pad = '0';
-			i++;
-		}
-		width = 0;
-		while (c[i] >= '0' && c[i] <= '9')
-			width = width * 10 + (c[i++] - '0');
-		if (c[i] == '\0')
+		i = parse_spec(c, i + 1, &spec, ap);
+		if (spec.conv == '\0')
 			break ;
-		if (c[i] == 'z')
-		{
-			total += dispatch(fd, c[i + 1], width, pad, 1, ap);
-			i += 2;
-		}
-		else
-			total += dispatch(fd, c[i++], width, pad, 0, ap);
+		total += render(fd, &spec, ap);
+		i++;
 	}
 	return (total);
 }
