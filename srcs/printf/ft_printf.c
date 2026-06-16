@@ -6,19 +6,9 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 08:53:26 by mortiz-d          #+#    #+#             */
-/*   Updated: 2026/06/16 00:00:00 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2026/06/16 18:45:38 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-** ft_printf / ft_dprintf con parser estilo printf real:
-**
-**     %  [flags '-' '0']  [ancho: digitos o '*']  [longitud 'z']  conversion
-**
-**   - '-' justifica a la izquierda; '*' toma el ancho del siguiente argumento
-**   - ancho como MINIMO (rellena con espacio o cero), nunca trunca
-**   - Conversiones: c s p d i u x X % , con %zu y ancho/relleno
-*/
 
 #include "../../lib/libft.h"
 
@@ -31,7 +21,6 @@ typedef struct s_spec
 	char	conv;
 }	t_spec;
 
-/* Cadena con ancho minimo, rellenando con espacios por la izquierda. */
 static int	write_str(int fd, const char *str, int width)
 {
 	int	len;
@@ -46,7 +35,6 @@ static int	write_str(int fd, const char *str, int width)
 	return (w + ft_write_string(fd, str));
 }
 
-/* Emite la conversion ya parseada, justificada a la derecha (ancho minimo). */
 static int	dispatch(int fd, char conv, t_spec *s, va_list ap)
 {
 	switch (conv)
@@ -79,10 +67,6 @@ static int	dispatch(int fd, char conv, t_spec *s, va_list ap)
 	}
 }
 
-/*
-** Justificacion a la izquierda: imprime el contenido con su ancho natural
-** (ancho 0) y rellena con espacios a la derecha hasta alcanzar el ancho.
-*/
 static int	render(int fd, t_spec *s, va_list ap)
 {
 	t_spec	natural;
@@ -99,7 +83,6 @@ static int	render(int fd, t_spec *s, va_list ap)
 	return (n);
 }
 
-/* Lee flags, ancho (digitos o '*') y longitud 'z'; deja i sobre la conversion. */
 static int	parse_spec(const char *c, int i, t_spec *s, va_list ap)
 {
 	s->pad = ' ';
