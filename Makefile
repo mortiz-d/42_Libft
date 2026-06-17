@@ -64,6 +64,10 @@ SRCS = 	srcs/ft_memset.c 			\
 		srcs/printf/ft_print_putnbr.c 				\
 		srcs/printf/ft_printf.c					\
 		srcs/flag/ft_flag.c					\
+		srcs/flag/ft_flag_create.c			\
+		srcs/flag/ft_flag_free.c			\
+		srcs/flag/ft_flag_find.c			\
+		srcs/flag/ft_flag_validate.c		\
 		srcs/flag/ft_flag_visualice.c		\
 		srcs/huffman_compresion/huffman_destroy_list.c	\
 		srcs/huffman_compresion/huffman_count_list.c	\

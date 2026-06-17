@@ -14,7 +14,8 @@ enum flag_type {
 	FLAG_CHAR,		//Needs an argument type char
 	FLAG_BOOLEAN,	//Needs an argument type boolean
 	FLAG_NONE,		//Doesnt needs any argument, just the flag presence
-    FLAG_HELP       //This flag shows a print about the other flags
+    FLAG_HELP,      //This flag shows a print about the other flags
+    FLAG_STRING_LIST //Captures multiple strings into a t_list
 };
 
 typedef struct s_flag
@@ -22,7 +23,9 @@ typedef struct s_flag
     char            *name;
     enum flag_type  type;
     int             active;
-    int             error;
+
+    int             limit_min;
+    int             limit_max;
 
     t_flag_apply        apply;
     t_flag_not_apply    not_apply;
@@ -35,6 +38,7 @@ typedef struct s_flag
             int max;
         } range;
         char    *str_value;
+        t_list  *list_value;
         char    char_value;
         int     bool_value;
     } value;

@@ -16,6 +16,8 @@
 void print_flag(void *content)
 {
     t_flag *f = (t_flag *)content;
+    t_list *aux;
+
     if (!f)
         return;
 
@@ -44,6 +46,16 @@ void print_flag(void *content)
 
     else if (f->type == FLAG_STRING)
         printf("%s", f->value.str_value);
+
+    else if (f->type == FLAG_STRING_LIST)
+    {
+        aux = f->value.list_value;
+        while (aux)
+        {
+            printf("%s ", (char *)aux->content);
+            aux = aux->next;
+        }
+    }
 
     else if (f->type == FLAG_CHAR)
         printf("%c", f->value.char_value);

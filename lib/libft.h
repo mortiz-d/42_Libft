@@ -44,34 +44,6 @@ typedef struct s_list
 	struct s_list	*prev;
 }	t_list;
 
-// enum flag_type {
-//     FLAG_INTEGER,	//Needs an argument type integer
-//     FLAG_STRING,     //Needs an argument type string
-// 	FLAG_CHAR,		//Needs an argument type char
-// 	FLAG_BOOLEAN,	//Needs an argument type boolean
-// 	FLAG_NONE		//Doesnt needs any argument, just the flag presence
-// };
-
-// typedef union s_argument {
-//     int    i;
-//     float  f;
-//     double d;
-//     char   c;
-//     char  *s;
-// } t_argument;
-
-// typedef struct s_flag
-// {
-// 	enum flag_type	type;
-// 	char			*name;
-// 	int 			min_range;
-// 	int 			max_range;
-// 	t_argument		*argument;
-// 	int				status;
-// 	struct s_flag	*next;
-// 	struct s_flag	*prev;
-// }	t_flag;
-
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
 int			ft_isalnum(int c);
@@ -135,17 +107,6 @@ int		ft_write_pointer(int fd, const void *c);
 int		ft_write_decimal(int fd, int number, int width, char pad);
 int		ft_write_nbr_base(int fd, unsigned long n, const char *base, int width, char pad);
 
-//FLAGS
-
-
-// t_flag *set_up_flag(t_flag *flag,char * name, enum flag_type type,int min_range,int max_range);
-// t_flag *find_flag(t_flag *flag, char *c);
-// int check_flag_status(t_flag *start_flag, char *c);
-// t_argument *get_flag_value(t_flag *start_flag, char *c);
-// int process_flags(int argc, char **argv, t_flag *flag);
-// void visualize_flags(t_flag *flag);
-// void	ft_flagclear(t_flag **lst);
-
 //HUFFMAN
 t_list *ft_huffman_find(t_list *lst, char c);
 t_list 	*ft_huffman_add_character(t_list *lst, char c);
@@ -161,7 +122,6 @@ t_binary_tree	*ft_binarytree_minValue(t_binary_tree *tree);
 t_binary_tree	*ft_binarytree_maxValue(t_binary_tree *tree);
 t_binary_tree	*ft_binarytree_delete(t_binary_tree* tree, int content);
 void			ft_binarytree_visualize(t_binary_tree *tree);
-// ft_binarytree_visualize
 
 
 
