@@ -16,6 +16,8 @@ t_list *ft_lstfind_match(t_list *lst, int (*f)(void *, void *), void *ctx)
 {
 	t_list *aux;
 
+	if (!f)
+		return (NULL);
 	aux = lst;
     while (aux)
     {

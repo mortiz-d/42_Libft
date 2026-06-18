@@ -12,47 +12,29 @@
 
 #include "../../lib/libft.h"
 
-static	void	ft_free_all(t_list *start);
-
-t_list	*ft_lstmap(t_list *lst, t_list *lst_start, void *(*f)(t_list*, void *))
+t_list	*ft_lstmap(t_list *lst, t_list *lst_start, void *(*f)(t_list *, void *))
 {
-	t_list	*aux;
 	t_list	*start;
+	t_list	*aux;
+	t_list	*new;
 
-	if (lst == NULL)
-		return (0);
-	aux = ft_lstnew(f(lst_start, lst->content));
-	if (aux == NULL)
-		return (0);
-	start = aux;
+	start = NULL;
+	aux = NULL;
 	while (lst != NULL)
 	{
-		lst = lst->next;
-		if (lst != NULL)
+		new = ft_lstnew(f(lst_start, lst->content));
+		if (new == NULL)
 		{
-			aux->next = ft_lstnew(f(lst_start, lst->content));
-			aux->next->prev = aux;
-			aux = aux->next;
-		}
-		if (aux == NULL)
-		{
-			ft_lstclear(&start);
-			ft_free_all(start);
+			ft_lstclear(&start); //In case we try to free all , all allocations inside t_list will be left as leaks
 			return (NULL);
 		}
+		new->prev = aux;
+		if (aux != NULL)
+			aux->next = new;
+		else
+			start = new;
+		aux = new;
+		lst = lst->next;
 	}
 	return (start);
-}
-
-static	void	ft_free_all(t_list *start)
-{
-	t_list	*aux;
-
-	while (start != NULL)
-	{
-		aux = start;
-		start = start->next;
-		free(aux);
-	}
-	free(start);
 }

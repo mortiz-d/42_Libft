@@ -13,6 +13,7 @@
 #include "../../lib/libft.h"
 void	ft_lstdelone(t_list *lst)
 {
-	lst->content = 0;
+	if (!lst)
+		return ;
 	free(lst);
 }
