@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft.h"
+#include "../../lib/libft.h"
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
 	while (lst != 0)

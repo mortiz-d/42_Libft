@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft.h"
+#include "../../lib/libft.h"
 
 void ft_lstsort(t_list *lst, int (*cmp)(void *, void *))
 {

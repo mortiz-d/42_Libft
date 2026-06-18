@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft.h"
+#include "../../lib/libft.h"
 
 static	void	ft_free_all(t_list *start);
 

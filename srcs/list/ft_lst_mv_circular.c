@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_lst_mv_circular.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 18:56:39 by mortiz-d          #+#    #+#             */
-/*   Updated: 2024/12/05 19:23:20 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2026/06/11 19:45:21 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft.h"
+#include "../../lib/libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+t_list  *ft_lst_mv_up_circular(t_list *lst)
 {
-	t_list *last;
+	t_list *aux;
+    
+    aux = lst;
+	if (!aux)
+		return NULL;
 
-	if (!lst || !new)
-		return;
+    aux = aux->prev;
+    if (!aux)
+        aux = ft_lstlast(lst);
+    return aux;
+}
 
-	if (!*lst) {
-		*lst = new;
-		return;
-	}
+t_list  *ft_lst_mv_down_circular(t_list *lst)
+{
+	t_list *aux;
+    
+    aux = lst;
+	if (!aux)
+		return NULL;
 
-	last = ft_lstlast(*lst);
-	last->next = new;
-	new->prev = last;
+    aux = aux->next;
+    if (!aux)
+        aux = ft_lstfirst(lst);
+
+    return aux;
 }

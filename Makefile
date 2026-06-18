@@ -43,21 +43,21 @@ SRCS = 	srcs/ft_memset.c 			\
 		srcs/ft_striteri.c 			\
 		srcs/ft_count_list.c 		\
 		srcs/ft_is_exact_word.c 	\
-		srcs/ft_lstnew_bonus.c 		\
-		srcs/ft_lstadd_front_bonus.c\
-		srcs/ft_lstsize_bonus.c 	\
-		srcs/ft_lst_rm_fromlst.c    \
-		srcs/ft_lst_mv_circular.c   \
-		srcs/ft_lst_mv.c            \
-		srcs/ft_lstfirst.c 	        \
-		srcs/ft_lstlast_bonus.c 	\
-		srcs/ft_lstadd_back_bonus.c \
-		srcs/ft_lstdelone_bonus.c 	\
-		srcs/ft_lstclear_bonus.c 	\
-		srcs/ft_lstiter_bonus.c 	\
-		srcs/ft_lstmap_bonus.c 		\
-		srcs/ft_lstsort.c   		\
-		srcs/ft_lstfind_match.c   	\
+		srcs/list/ft_lstnew.c 				\
+		srcs/list/ft_lstadd_front.c			\
+		srcs/list/ft_lstsize.c 				\
+		srcs/list/ft_lst_rm_fromlst.c    	\
+		srcs/list/ft_lst_mv_circular.c   	\
+		srcs/list/ft_lst_mv.c            	\
+		srcs/list/ft_lstfirst.c 	        \
+		srcs/list/ft_lstlast.c 				\
+		srcs/list/ft_lstadd_back.c 			\
+		srcs/list/ft_lstdelone.c 			\
+		srcs/list/ft_lstclear.c 			\
+		srcs/list/ft_lstiter.c 				\
+		srcs/list/ft_lstmap.c 				\
+		srcs/list/ft_lstsort.c   			\
+		srcs/list/ft_lstfind_match.c   		\
 		srcs/printf/ft_print_string.c		\
 		srcs/printf/ft_print_decimal.c 			\
 		srcs/printf/ft_print_pointer.c 			\
@@ -110,6 +110,7 @@ obj/%.o: srcs/%.c
 	@mkdir -p obj/huffman_compresion
 	@mkdir -p obj/get_next_line
 	@mkdir -p obj/binary_tree
+	@mkdir -p obj/list
 	${CC} ${CFLAGS} -c $< -o $@
 	$(CYAN)Compiled LIBFT Object $< $(RESET)
 

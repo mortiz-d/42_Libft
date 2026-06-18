@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstfind_match.c                                 :+:      :+:    :+:   */
+/*   ft_lst_mv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/12 21:16:34 by mortiz-d          #+#    #+#             */
-/*   Updated: 2026/06/12 22:43:42 by mortiz-d         ###   ########.fr       */
+/*   Created: 2026/06/11 19:44:41 by mortiz-d          #+#    #+#             */
+/*   Updated: 2026/06/11 19:45:14 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft.h"
+#include "../../lib/libft.h"
 
-t_list *ft_lstfind_match(t_list *lst, int (*f)(void *, void *), void *ctx)
+t_list  *ft_lst_mv_up(t_list *lst)
 {
 	t_list *aux;
+    
+    aux = lst;
+	if (!aux)
+		return NULL;
 
-	aux = lst;
-    while (aux)
-    {
-        if (f(aux->content, ctx))
-            return aux;
+    aux = aux->prev;
+    return aux;
+}
 
-        aux = aux->next;
-    }
 
-    return NULL;
+t_list  *ft_lst_mv_down(t_list *lst)
+{
+	t_list *aux;
+    
+    aux = lst;
+	if (!aux)
+		return NULL;
+
+    aux = aux->next;
+
+    return aux;
 }
