@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft.h"
+#include "../../lib/libft.h"
 
 static int	partscount(char const *s, char c);
 static char	*word(char const *s, char c);

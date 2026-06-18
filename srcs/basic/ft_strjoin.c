@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miguelangelortizdelburgo <miguelangelor    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 17:02:47 by mortiz-d          #+#    #+#             */
+/*   Created: 2021/11/08 14:45:43 by mortiz-d          #+#    #+#             */
 /*   Updated: 2024/12/05 19:23:20 by miguelangel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft.h"
+#include "../../lib/libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	unsigned char		*aux1;
-	const unsigned char	*aux2;
-	unsigned long		aux3;
+	char	*aux1;
+	int		auxsize;
 
-	aux1 = dest;
-	aux2 = src;
-	aux3 = 0;
-	if (aux1 == NULL && aux2 == NULL)
+	if (s1 == NULL || s2 == NULL)
 		return (0);
-	while (aux3 < n)
-	{
-		aux1[aux3] = aux2[aux3];
-		aux3++;
-	}
-	return (dest);
+	auxsize = ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1;
+	aux1 = ft_calloc(sizeof(char), auxsize);
+	if (aux1 == NULL)
+		return (0);
+	ft_strlcpy(aux1, (char *)s1, auxsize);
+	ft_strlcat(aux1, (char *)s2, auxsize);
+	return (aux1);
 }

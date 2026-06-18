@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft.h"
+#include "../../lib/libft.h"
 
 static char	*makestr(char const *s, unsigned int start, size_t len);
 
@@ -40,7 +40,7 @@ static char	*makestr(char const *s, unsigned int start, size_t len)
 {	
 	char	*aux1;
 
-	if ((start + len) > (ft_strlen((char *)s) - start))
+	if (len > (ft_strlen((char *)s) - start))
 	{
 		aux1 = ft_calloc(sizeof(char), ft_strlen((char *)s) - start + 1);
 		if (aux1 == NULL)

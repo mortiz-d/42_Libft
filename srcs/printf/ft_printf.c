@@ -55,9 +55,15 @@ static int	dispatch(int fd, char conv, t_spec *s, va_list *ap)
 			return (ft_write_nbr_base(fd, va_arg(*ap, unsigned int),
 					"0123456789", s->width, s->pad));
 		case 'x':
+			if (s->is_size)
+				return (ft_write_nbr_base(fd, va_arg(*ap, size_t),
+						"0123456789abcdef", s->width, s->pad));
 			return (ft_write_nbr_base(fd, va_arg(*ap, unsigned int),
 					"0123456789abcdef", s->width, s->pad));
 		case 'X':
+			if (s->is_size)
+				return (ft_write_nbr_base(fd, va_arg(*ap, size_t),
+						"0123456789ABCDEF", s->width, s->pad));
 			return (ft_write_nbr_base(fd, va_arg(*ap, unsigned int),
 					"0123456789ABCDEF", s->width, s->pad));
 		case '%':

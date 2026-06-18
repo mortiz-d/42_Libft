@@ -12,18 +12,17 @@
 
 #include "../../lib/libft.h"
 
-void fd_huffman_destroy_list(t_list *lst)
+void ft_huffman_destroy_list(t_list **lst)
 {
     t_list *aux;
-    if (!lst)
-        return;
-    aux = lst;
 
+    if (!lst || !*lst)
+        return;
+    aux = *lst;
     while (aux)
     {
         free(aux->content);
         aux = aux->next;
     }
-    ft_lstclear(&lst);
-    return;
+    ft_lstclear(lst);
 }

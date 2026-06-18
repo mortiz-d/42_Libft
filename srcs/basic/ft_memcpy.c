@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miguelangelortizdelburgo <miguelangelor    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 17:41:23 by mortiz-d          #+#    #+#             */
+/*   Created: 2021/11/04 17:02:47 by mortiz-d          #+#    #+#             */
 /*   Updated: 2024/12/05 19:23:20 by miguelangel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft.h"
+#include "../../lib/libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	unsigned int	cont;
-	unsigned int	modsize;
+	unsigned char		*aux1;
+	const unsigned char	*aux2;
+	unsigned long		aux3;
 
-	cont = 0;
-	while (dst[cont] != '\0' && cont <= dstsize)
-		cont++;
-	modsize = dstsize - cont;
-	if (cont < dstsize)
-		return (cont + ft_strlcpy ((dst + cont), src, modsize));
-	return (ft_strlen((char *)src) + dstsize);
+	aux1 = dest;
+	aux2 = src;
+	aux3 = 0;
+	if (aux1 == NULL && aux2 == NULL)
+		return (0);
+	while (aux3 < n)
+	{
+		aux1[aux3] = aux2[aux3];
+		aux3++;
+	}
+	return (dest);
 }

@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miguelangelortizdelburgo <miguelangelor    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/05 11:50:31 by mortiz-d          #+#    #+#             */
+/*   Created: 2021/11/09 14:12:57 by mortiz-d          #+#    #+#             */
 /*   Updated: 2024/12/05 19:23:20 by miguelangel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft.h"
+#include "../../lib/libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	unsigned char	*auxs1;
-	unsigned char	*auxs2;
-	size_t			cont;
+	int		start;
+	int		end;
+	char	*res;
 
-	auxs1 = (unsigned char *)s1;
-	auxs2 = (unsigned char *)s2;
-	cont = 0;
-	if (n == 0)
-		return (0);
-	while ((cont < n))
-	{
-		if (auxs1[cont] != auxs2[cont])
-			return (auxs1[cont] - auxs2[cont]);
-		if (auxs1[cont] == 0 || auxs2[cont] == 0)
-			return (auxs1[cont] - auxs2[cont]);
-		cont++;
-	}
-	return (0);
+	if (!s1 || !set)
+		return NULL;
+
+	start = 0;
+	while (s1[start] && ft_strchr(set, s1[start]))
+		start++;
+
+	end = ft_strlen(s1);
+	while (end > start && ft_strchr(set, s1[end - 1]))
+		end--;
+
+	res = ft_calloc(end - start + 1, sizeof(char));
+	if (!res)
+		return NULL;
+
+	ft_strlcpy(res, s1 + start, end - start + 1);
+	return res;
 }

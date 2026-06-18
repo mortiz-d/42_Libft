@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft.h"
+#include "../../lib/libft.h"
 
 static	int	calcular_tamano(int n);
 static char	*convertir_string(int n, int tam, char *array);

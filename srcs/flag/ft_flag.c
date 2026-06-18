@@ -20,6 +20,8 @@ int process_flags(int argc, char **argv, t_list *flag,struct s_params *params)
     t_flag *f;
     int ret = 1;
 
+	if (!argv)
+		return (0);
 	while (i < argc)
 	{
 		aux = find_flag(flag,argv[i]);

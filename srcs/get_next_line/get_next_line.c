@@ -12,20 +12,40 @@
 
 #include "../../lib/get_next_line.h"
 
-//Noted : theres a bug that if we dont finish gnl we leave data saved but reachable , all input must end in \0
+// Reading a fd to EOF frees its stash automatically. If you stop before EOF
+// (or reuse a fd number), call gnl_clear(fd) to release the leftover stash.
 static char	*get_str(char *str);
 static char	*get_extra(char *str, char *pin);
 static char	*read_buffer(int fd, char *str);
 static char	*makenewstr(char *oldstr, int size);
 
+static char	**gnl_get_stash(void)
+{
+	static char	*stash[GNL_MAX_FD];
+
+	return (stash);
+}
+
+void	gnl_clear(int fd)
+{
+	char	**pin;
+
+	if (fd < 0 || fd >= GNL_MAX_FD)
+		return ;
+	pin = gnl_get_stash();
+	free(pin[fd]);
+	pin[fd] = NULL;
+}
+
 char	*get_next_line(int fd)
 {
-	static char	*pin[4096];
+	char		**pin;
 	char		*str;
 	int			tam;
 
-	if (fd == -1 || BUFFER_SIZE <= 0 || read(fd, 0, 0) == -1)
+	if (fd < 0 || fd >= GNL_MAX_FD || BUFFER_SIZE <= 0 || read(fd, 0, 0) == -1)
 		return (0);
+	pin = gnl_get_stash();
 	tam = ft_strlen_gnl(pin[fd]);
 	if (tam != 0)
 	{
@@ -47,12 +67,19 @@ char	*get_next_line(int fd)
 static char	*read_buffer(int fd, char *str)
 {
 	int		tam;
+	int		rd;
 
 	while (ft_strchr_gnl(str, '\n') == 0)
 	{
 		tam = ft_strlen_gnl(str);
 		str = makenewstr(str, (tam + BUFFER_SIZE + 1));
-		if (read(fd, str + tam, BUFFER_SIZE) == 0)
+		rd = read(fd, str + tam, BUFFER_SIZE);
+		if (rd < 0)
+		{
+			free(str);
+			return (0);
+		}
+		if (rd == 0)
 			break ;
 	}
 	return (str);

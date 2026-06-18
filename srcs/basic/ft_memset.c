@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miguelangelortizdelburgo <miguelangelor    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/05 11:59:30 by mortiz-d          #+#    #+#             */
+/*   Created: 2021/12/09 12:14:08 by mortiz-d          #+#    #+#             */
 /*   Updated: 2024/12/05 19:23:20 by miguelangel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft.h"
+#include "../../lib/libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	*ft_memset(void *str, int c, size_t size)
 {
 	char			*aux1;
 	unsigned long	aux2;
 
-	aux1 = (char *)s;
+	aux1 = str;
 	aux2 = 0;
-	if (c > 127)
-		c = (unsigned char)c;
-	while (aux2 < n)
+	while ((aux2 < size))
 	{
-		if (aux1[aux2] == c)
-			return (aux1 + aux2);
+		*aux1 = (unsigned char)c;
 		aux2++;
+		aux1++;
 	}
-	return (0);
+	return (str);
 }

@@ -18,6 +18,7 @@ int validate_argument(int argc, int *i, char **argv, t_flag *flag, t_list *flags
     int min;
     int max;
     t_list *node;
+    char *dup;
 
     if (!flag || !argv || !i)
         return 0;
@@ -107,9 +108,15 @@ int validate_argument(int argc, int *i, char **argv, t_flag *flag, t_list *flags
 
             while (*i + 1 < argc && !find_flag(flags, argv[*i + 1]))
             {
-                node = ft_lstnew(ft_strdup(argv[*i + 1]));
-                if (!node)
+                dup = ft_strdup(argv[*i + 1]);
+                if (!dup)
                     return 0;
+                node = ft_lstnew(dup);
+                if (!node)
+                {
+                    free(dup);
+                    return 0;
+                }
                 ft_lstadd_back(&flag->value.list_value, node);
                 (*i)++;
             }

@@ -113,7 +113,7 @@ t_list 	*ft_huffman_add_character(t_list *lst, char c);
 size_t	ft_huffman_calculate_bitsize(t_list *lst);
 size_t 	ft_huffman_list_count(t_list *lst);
 void 	ft_huffman_visualize(t_list *lst);
-void	fd_huffman_destroy_list(t_list *lst);
+void	ft_huffman_destroy_list(t_list **lst);
 
 //BINARY TREE
 t_binary_tree   *ft_binarytree_create(int content);

@@ -1,5 +1,5 @@
 
-#include "../lib/libft.h"
+#include "../../lib/libft.h"
 
 int ft_is_exact_word(char *str, char *cmp)
 {

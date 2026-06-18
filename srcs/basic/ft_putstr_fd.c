@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miguelangelortizdelburgo <miguelangelor    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/05 12:12:27 by mortiz-d          #+#    #+#             */
+/*   Created: 2021/11/11 18:29:40 by mortiz-d          #+#    #+#             */
 /*   Updated: 2024/12/05 19:23:20 by miguelangel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft.h"
+#include "../../lib/libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+void	ft_putstr_fd(char *s, int fd)
 {
-	unsigned char		*aux1;
-	unsigned char		*aux2;
-	unsigned long		aux3;
+	int	cont;
+	int	size;
 
-	aux1 = (unsigned char *)s1;
-	aux2 = (unsigned char *)s2;
-	aux3 = 0;
-	while (aux3 < n)
+	if (s != 0)
 	{
-		if (aux1[aux3] != aux2[aux3])
-			return (aux1[aux3] - aux2[aux3]);
-		aux3++;
+		cont = 0;
+		size = ft_strlen(s);
+		while (cont < size)
+		{
+			write (fd, &s[cont], 1);
+			cont++;
+		}
 	}
-	if (aux3 == n)
-		return (0);
-	return (aux1[aux3] - aux2[aux3]);
 }

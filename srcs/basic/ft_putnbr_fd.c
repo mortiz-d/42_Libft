@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_list.c                                    :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miguelangelortizdelburgo <miguelangelor    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/17 09:11:14 by mortiz-d          #+#    #+#             */
+/*   Created: 2021/11/11 18:44:36 by mortiz-d          #+#    #+#             */
 /*   Updated: 2024/12/05 19:23:20 by miguelangel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft.h"
-int	ft_count_list(int *list)
-{
-	int	i;
+#include "../../lib/libft.h"
 
-	i = 0;
-	if (list != 0)
+void	ft_putnbr_fd(int nb, int fd)
+{
+	long	n;
+
+	n = nb;
+	if (n < 0)
 	{
-		while (list[i] != '\0')
-			i++;
+		ft_putchar_fd('-', fd);
+		n = -n;
 	}
-	return (i);
+	if (n >= 10)
+		ft_putnbr_fd((int)(n / 10), fd);
+	ft_putchar_fd((char)(n % 10) + '0', fd);
 }

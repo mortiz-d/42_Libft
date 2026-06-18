@@ -16,6 +16,8 @@ t_flag *ft_flagnew(char *name, enum flag_type type, t_flag_apply apply,t_flag_no
 {
     t_flag *flag;
 
+    if (!name)
+        return NULL;
     flag = ft_calloc(sizeof(t_flag),1);
     if (!flag)
         return NULL;
@@ -75,7 +77,10 @@ t_list *set_up_flag(t_list *flag, char *name,enum flag_type type, t_flag_apply a
         return flag;
     node = ft_lstnew(new_flag);
     if (!node)
+    {
+        free_flag(new_flag);
         return flag;
+    }
     ft_lstadd_front(&flag, node);
 
     return flag;

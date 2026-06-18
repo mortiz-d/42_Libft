@@ -1,6 +1,6 @@
 
 
-#include "../lib/libft.h"
+#include "../../lib/libft.h"
 
 int ft_isnumber(char *str)
 {
@@ -11,6 +11,9 @@ int ft_isnumber(char *str)
 
     if (str[i] == '-' || str[i] == '+')
        i++;
+
+    if (!str[i])
+        return 0;
 
     while (str[i])
     {

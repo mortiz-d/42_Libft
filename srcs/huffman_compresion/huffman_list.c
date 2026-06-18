@@ -12,8 +12,6 @@
 
 #include "../../lib/libft.h"
 
-
-
 t_list *ft_huffman_find(t_list *lst, char c)
 {
     t_list *aux;
@@ -32,55 +30,61 @@ t_list *ft_huffman_find(t_list *lst, char c)
     return (NULL);
 }
 
+static t_list	*new_huff_node(char c)
+{
+    t_huffman_count_list	*h;
+    t_list					*node;
+
+    h = ft_calloc(1, sizeof(t_huffman_count_list));
+    if (!h)
+        return (NULL);
+    h->c = c;
+    h->count = 1;
+    node = ft_lstnew(h);
+    if (!node)
+    {
+        free(h);
+        return (NULL);
+    }
+    return (node);
+}
+
+static void	huff_bubble_up(t_list *aux)
+{
+    t_huffman_count_list	*cur;
+    t_huffman_count_list	*prv;
+    t_huffman_count_list	tmp;
+
+    while (aux->prev)
+    {
+        cur = aux->content;
+        prv = aux->prev->content;
+        if (cur->count <= prv->count)
+            break ;
+        tmp = *prv;
+        *prv = *cur;
+        *cur = tmp;
+        aux = aux->prev;
+    }
+}
+
 t_list *ft_huffman_add_character(t_list *lst, char c)
 {
-    t_huffman_count_list *aux_huff;
-    t_list *aux;
+    t_list	*aux;
+    t_list	*node;
 
     if (!lst)
+        return (new_huff_node(c));
+    aux = ft_huffman_find(lst, c);
+    if (!aux)
     {
-        aux_huff = calloc(1,sizeof(t_huffman_count_list));
-        aux_huff->c = c;
-        aux_huff->count = 1;
-        lst = ft_lstnew(aux_huff);
+        node = new_huff_node(c);
+        if (node)
+            ft_lstadd_back(&lst, node);
+        return (lst);
     }
-    else
-    {
-        aux = ft_huffman_find(lst,c);
-        if (!aux)
-        {
-            aux_huff = calloc(1,sizeof(t_huffman_count_list));
-            aux_huff->c = c;
-            aux_huff->count = 1;
-            ft_lstadd_back(&lst,ft_lstnew(aux_huff));
-        }
-        else
-        {
-            ((t_huffman_count_list *)aux->content)->count++;
-
-            while (aux->prev)
-            {
-                if (((t_huffman_count_list *)aux->content)->count > ((t_huffman_count_list *)aux->prev->content)->count)
-                {
-                    aux_huff = calloc(1,sizeof(t_huffman_count_list));
-                    aux_huff->c = ((t_huffman_count_list *)aux->content)->c;
-                    aux_huff->count = ((t_huffman_count_list *)aux->content)->count;
-
-                    ((t_huffman_count_list *)aux->content)->c = ((t_huffman_count_list *)aux->prev->content)->c;
-                    ((t_huffman_count_list *)aux->content)->count = ((t_huffman_count_list *)aux->prev->content)->count;
-
-                    ((t_huffman_count_list *)aux->prev->content)->c = aux_huff->c;
-                    ((t_huffman_count_list *)aux->prev->content)->count = aux_huff->count;
-                    free(aux_huff);
-                    aux = aux->prev;
-                }
-                else
-                    break;
-            
-            }
-        }
-        
-    }
+    ((t_huffman_count_list *)aux->content)->count++;
+    huff_bubble_up(aux);
     return (lst);
 }
 

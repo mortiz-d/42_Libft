@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_count_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miguelangelortizdelburgo <miguelangelor    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 14:45:43 by mortiz-d          #+#    #+#             */
+/*   Created: 2021/12/17 09:11:14 by mortiz-d          #+#    #+#             */
 /*   Updated: 2024/12/05 19:23:20 by miguelangel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft.h"
-
-char	*ft_strjoin(char const *s1, char const *s2)
+#include "../../lib/libft.h"
+int	ft_count_list(int *list)
 {
-	char	*aux1;
-	int		auxsize;
+	int	i;
 
-	if (s1 == NULL || s2 == NULL)
-		return (0);
-	auxsize = ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1;
-	aux1 = ft_calloc(sizeof(char), auxsize);
-	if (aux1 == NULL)
-		return (0);
-	ft_strlcpy(aux1, (char *)s1, auxsize);
-	ft_strlcat(aux1, (char *)s2, auxsize);
-	return (aux1);
+	i = 0;
+	if (list != 0)
+	{
+		while (list[i] != '\0')
+			i++;
+	}
+	return (i);
 }

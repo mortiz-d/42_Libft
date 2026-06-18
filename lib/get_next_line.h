@@ -18,8 +18,12 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 32
 # endif
+# ifndef GNL_MAX_FD
+#  define GNL_MAX_FD 4096
+# endif
 
 char		*get_next_line(int fd);
+void		gnl_clear(int fd);
 int			ft_strlen_gnl(const char *str);
 char		*ft_strchr_gnl(const char *s, int c);
 void		*ft_memcpy_gnl(void *dest, const void *src, size_t n);
