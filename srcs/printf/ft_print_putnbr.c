@@ -6,11 +6,11 @@
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 10:15:49 by mortiz-d          #+#    #+#             */
-/*   Updated: 2026/06/15 00:00:00 by mortiz-d         ###   ########.fr       */
+/*   Updated: 2026/06/15 20:38:56 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../lib/libft.h"
+#include "printf_internal.h"
 
 static int	base_len(const char *base)
 {
@@ -24,7 +24,7 @@ static int	base_len(const char *base)
 
 
 // u / x / X / zu
-int	ft_write_nbr_base(int fd, unsigned long n, const char *base, int width,
+int	ft_write_nbr_base(t_sink *s, unsigned long n, const char *base, int width,
 		char pad)
 {
 	char	buf[64];
@@ -43,8 +43,8 @@ int	ft_write_nbr_base(int fd, unsigned long n, const char *base, int width,
 	}
 	written = 0;
 	while (written + len < width)
-		written += ft_write_char(fd, pad);
+		written += ft_write_char(s, pad);
 	while (len-- > 0)
-		written += ft_write_char(fd, buf[len]);
+		written += ft_write_char(s, buf[len]);
 	return (written);
 }

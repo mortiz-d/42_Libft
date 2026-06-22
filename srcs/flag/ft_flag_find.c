@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mortiz-d <mortiz-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/17 00:00:00 by mortiz-d          #+#    #+#             */
-/*   Updated: 2026/06/17 00:00:00 by mortiz-d         ###   ########.fr       */
+/*   Created: 2026/06/17 17:34:10 by mortiz-d          #+#    #+#             */
+/*   Updated: 2026/06/17 19:56:19 by mortiz-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int needs_argument(char *c)
 {
-	printf ("param : %s requires an argument\n",c);
+	ft_printf ("param : %s requires an argument\n",c);
 	return (0);
 }
 

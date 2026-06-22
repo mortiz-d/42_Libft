@@ -101,11 +101,7 @@ t_list *ft_lstfind_match(t_list *lst, int (*f)(void *, void *), void *ctx);
 //PRINTF
 int		ft_printf(const char *c, ...);
 int		ft_dprintf(int fd, const char *c, ...);
-int		ft_write_char(int fd, int c);
-int		ft_write_string(int fd, const char *c);
-int		ft_write_pointer(int fd, const void *c);
-int		ft_write_decimal(int fd, int number, int width, char pad);
-int		ft_write_nbr_base(int fd, unsigned long n, const char *base, int width, char pad);
+int		ft_asprintf(char **out, const char *c, ...);
 
 //HUFFMAN
 t_list *ft_huffman_find(t_list *lst, char c);

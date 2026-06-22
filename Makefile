@@ -62,6 +62,7 @@ SRCS = 	srcs/basic/ft_memset.c 			\
 		srcs/printf/ft_print_decimal.c 			\
 		srcs/printf/ft_print_pointer.c 			\
 		srcs/printf/ft_print_putnbr.c 				\
+		srcs/printf/ft_sink.c					\
 		srcs/printf/ft_printf.c					\
 		srcs/flag/ft_flag.c					\
 		srcs/flag/ft_flag_create.c			\
